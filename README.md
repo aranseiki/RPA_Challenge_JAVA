@@ -25,7 +25,9 @@
 
 #### Abra o Visual Studio Code na pasta `rpachallenge` clonada;
 
-#### Execute o botão de play na aplicação localizado no canto superior direito do Visual Studio Code.
+#### Execute o botão de play no arquivo `pom.xml` localizado na raiz do projeto. O botão fica localizado no canto superior direito do Visual Studio Code.
+
+#### Execute o botão de play no arquivo `App.java` localizado no caminho `.\src\main\java\com\rpachallengejava`.
 
 # Autores
 
