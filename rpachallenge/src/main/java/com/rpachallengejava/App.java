@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -21,14 +23,14 @@ import java.io.IOException;
 public class App {
     public static WebDriver navegador;
     public static EdgeOptions optionsDriver;
-    public static final String PASTA_DOWNLOAD = "C:\\Users\\techa\\dev\\rpaChallengeJAVA\\rpachallenge\\assets";
+    public static final String PASTA_DOWNLOAD = String.join("\\", Paths.get("").toAbsolutePath().toString(), "assets");
     public static String caminhoArquivoExcela = "";
     public static List<List<String>> conteudoArquivoExcela = new ArrayList<>();
-
+    
     public static void main( String[] args ) {
         iniciarNavegador(
             "https://rpachallenge.com/"
-        );
+            );
         
         boolean validacaoArquivoExcel = baixarArquivoDados();
         
