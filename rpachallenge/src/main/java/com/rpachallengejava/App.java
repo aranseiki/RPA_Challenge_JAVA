@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -17,6 +16,8 @@ import java.util.List;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -26,14 +27,15 @@ public class App {
     public static final String PASTA_DOWNLOAD = String.join("\\", Paths.get("").toAbsolutePath().toString(), "assets");
     public static String caminhoArquivoExcela = "";
     public static List<List<String>> conteudoArquivoExcela = new ArrayList<>();
-    
+
     public static void main( String[] args ) {
+        criarPasta(new File(PASTA_DOWNLOAD));
         iniciarNavegador(
             "https://rpachallenge.com/"
-            );
-        
+        );
+
         boolean validacaoArquivoExcel = baixarArquivoDados();
-        
+
         if (validacaoArquivoExcel == true) {
             lerArquivoExcel(caminhoArquivoExcela, conteudoArquivoExcela);
         }
@@ -46,6 +48,27 @@ public class App {
         }
 
         encerrarNavegador();
+    }
+
+
+    public static boolean criarPasta(File ObjetoPasta) {
+        boolean validacaoPastaDownload = false;
+        int contagem = 0;
+        while (validacaoPastaDownload == false & contagem < 30) {
+            try {
+                validacaoPastaDownload = ObjetoPasta.mkdirs();
+
+                if(validacaoPastaDownload == true) {
+                    return validacaoPastaDownload;
+                }
+            } catch (Exception erro) {
+                validacaoPastaDownload = false;
+            }
+            
+            contagem = contagem + 1;
+        }
+
+        return validacaoPastaDownload;
     }
 
 
